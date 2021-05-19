@@ -1,8 +1,9 @@
-//opengameart.org
+//akshitadixit@github.com
 import { OrbitControls } from "./OrbitControls.js";
 import { Points } from "./three.module.js";
 
-const radius = 5;
+const radius = 6;
+const text = "Akshita Dixit";
 var images = ["../images/akshay.jpg", "../images/amir.jpg", "../images/amitabh.jpg", "../images/devanand.jpg", "../images/dharmendra.jpg", "../images/dilip kumar.jpg", "../images/govinda.jpg", "../images/jitendra.jpg", "../images/kishore kumar.jpg", "../images/manoj kumar.jpg", "../images/mithun.jpg", "../images/raj kapoor.jpg", "../images/rajendra-kumar.jpg", "../images/rajesh khanna.jpg", "../images/rishi kapoor.jpg", "../images/ritik roshan.jpg", "../images/salman.jpg", "../images/Shashi_Kapoor.png", "../images/srk.jpg", "../images/sunny deol.jpg"
 ]
 
@@ -34,9 +35,15 @@ const geometry2 = new THREE.SphereBufferGeometry(radius, 64, 64);
 const material2 = new THREE.MeshLambertMaterial({ color: 0x00ff });
 material2.shininess = 500;
 
+const geometry3 = new THREE.SphereBufferGeometry(radius+0.5, 64, 64);
+const material3 = new THREE.MeshPhongMaterial({ color: 0x00ff });
+material2.shininess = 500;
+
 const sphere2 = new THREE.Mesh(geometry2, material2);
 //group.add(sphere2);
 scene.add(sphere2);
+const sphere3 = new THREE.Mesh(geometry3, material3);
+scene.add(sphere3);
 
 const geometry = new THREE.SphereBufferGeometry(7.5, 8, 520);
 const material = new THREE.PointsMaterial({ color: 0x00ffc2 });
@@ -44,7 +51,6 @@ material.size = 0.1;
 
 const sphere = new THREE.Points( geometry, material );
 scene.add(sphere);
-
 
 // Lights
 scene.add(new THREE.AmbientLight(0xffffff, 0.08));
@@ -58,7 +64,7 @@ light2.position.set(10,1,1);
 camera.add(light2);
 scene.add(camera)//since the camera now has children
 
-camera.position.z = 8;
+camera.position.z = 15;
 
 // controls
 
@@ -205,5 +211,15 @@ function onMouseMove( event ) {
 
 }
 
+function winResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+renderer.setPixelRatio(window.devicePixelRatio);
+window.addEventListener('resize', winResize);
 window.addEventListener('click', playsound);
 window.addEventListener( 'mousemove', onMouseMove, false );
+//window.addEventListener('touchmove', onTouchMove);
+window.addEventListener('touchend', playsound);
