@@ -245,7 +245,7 @@ window.addEventListener('resize', winResize);
 window.addEventListener('click', playsoundclick);
 window.addEventListener( 'mousemove', onMouseMove, false );
 //window.addEventListener('touchmove', onTouchMove);
-window.addEventListener('touchstart', playsoundtouch, false);
+window.addEventListener('touchend', playsoundtouch, false);
 window.onresize = function () {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
