@@ -176,7 +176,7 @@ function compare_uuid(given) {
     return -1;
 }
 
-function playsound(n) {
+function playsoundclick(n) {
     raycaster.setFromCamera(mouse, camera);
 
     // calculate objects intersecting the picking ray
@@ -217,9 +217,37 @@ function winResize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
+function playsoundtouch(event) {
+    event.preventDefault();
+    raycaster.setFromCamera(mouse, camera);
+
+    // calculate objects intersecting the picking ray
+    const intersects = raycaster.intersectObjects(scene.children);
+    
+    for (let i = 0; i < intersects.length; i++) {
+        var res = compare_uuid(intersects[i].object.uuid);
+        if (res != -1) {                
+            if (sound.isPlaying) {
+                sound.stop();
+            }
+            audioLoader.load( sounds[res], function( buffer ) {
+                sound.setBuffer( buffer );
+                sound.setLoop( false );
+                sound.setVolume( 1 );
+                sound.play();
+            });
+        }
+    }
+}
+
 renderer.setPixelRatio(window.devicePixelRatio);
 window.addEventListener('resize', winResize);
-window.addEventListener('click', playsound);
+window.addEventListener('click', playsoundclick);
 window.addEventListener( 'mousemove', onMouseMove, false );
 //window.addEventListener('touchmove', onTouchMove);
-window.addEventListener('touchend', playsound);
+window.addEventListener('touchend', playsoundtouch, false);
+window.onresize = function () {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
