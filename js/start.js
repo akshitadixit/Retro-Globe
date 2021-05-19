@@ -219,6 +219,9 @@ function winResize() {
 
 function playsoundtouch(event) {
     event.preventDefault();
+    if (sound.isPlaying) {
+        sound.stop();
+    }
     raycaster.setFromCamera(mouse, camera);
 
     // calculate objects intersecting the picking ray
@@ -227,9 +230,6 @@ function playsoundtouch(event) {
     for (let i = 0; i < intersects.length; i++) {
         var res = compare_uuid(intersects[i].object.uuid);
         if (res != -1) {                
-            if (sound.isPlaying) {
-                sound.stop();
-            }
             audioLoader.load( sounds[res], function( buffer ) {
                 sound.setBuffer( buffer );
                 sound.setLoop( false );
@@ -245,7 +245,7 @@ window.addEventListener('resize', winResize);
 window.addEventListener('click', playsoundclick);
 window.addEventListener( 'mousemove', onMouseMove, false );
 //window.addEventListener('touchmove', onTouchMove);
-window.addEventListener('touchend', playsoundtouch, false);
+window.addEventListener('touchstart', playsoundtouch, false);
 window.onresize = function () {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
