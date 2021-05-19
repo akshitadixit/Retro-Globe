@@ -4,10 +4,10 @@ import { Points } from "./three.module.js";
 
 const radius = 6;
 const text = "Akshita Dixit";
-var images = ["./images/akshay.jpg", "./images/amir.jpg", "./images/amitabh.jpg", "./images/devanand.jpg", "./images/dharmendra.jpg", "./images/dilip kumar.jpg", "./images/govinda.jpg", "./images/jitendra.jpg", "./images/kishore kumar.jpg", "./images/manoj kumar.jpg", "./images/mithun.jpg", "./images/raj kapoor.jpg", "./images/rajendra-kumar.jpg", "./images/rajesh khanna.jpg", "./images/rishi kapoor.jpg", "./images/ritik roshan.jpg", "./images/salman.jpg", "./images/Shashi_Kapoor.png", "./images/srk.jpg", "./images/sunny deol.jpg"
+var images = ["images/akshay.jpg", "images/amir.jpg", "images/amitabh.jpg", "images/devanand.jpg", "images/dharmendra.jpg", "images/dilip kumar.jpg", "images/govinda.jpg", "images/jitendra.jpg", "images/kishore kumar.jpg", "images/manoj kumar.jpg", "images/mithun.jpg", "images/raj kapoor.jpg", "images/rajendra-kumar.jpg", "images/rajesh khanna.jpg", "images/rishi kapoor.jpg", "images/ritik roshan.jpg", "images/salman.jpg", "images/Shashi_Kapoor.png", "images/srk.jpg", "images/sunny deol.jpg"
 ]
 
-const sounds = ["./songs/akshay.mp3", "./songs/amir.mp3", "./songs/amitabh.mp3", "./songs/devanand.mp3", "./songs/dharmendra.mp3", "./songs/dilip kumar.mp3", "./songs/govinda.mp3", "./songs/jitendra.mp3", "./songs/kishore kumar.mp3", "./songs/manoj kumar.mp3", "./songs/mithun.mp3", "./songs/raj kapoor.mp3", "./songs/rajendra kumar.mp3", "./songs/rajesh khanna.mp3", "./songs/rishi kapoor.mp3", "./songs/ritik.mp3", "./songs/salman.mp3", "./songs/shashi kapoor.mp3", "./songs/srk.mp3", "./songs/sunny deol.mp3"];
+const sounds = ["songs/akshay.mp3", "songs/amir.mp3", "songs/amitabh.mp3", "songs/devanand.mp3", "songs/dharmendra.mp3", "songs/dilip kumar.mp3", "songs/govinda.mp3", "songs/jitendra.mp3", "songs/kishore kumar.mp3", "songs/manoj kumar.mp3", "songs/mithun.mp3", "songs/raj kapoor.mp3", "songs/rajendra kumar.mp3", "songs/rajesh khanna.mp3", "songs/rishi kapoor.mp3", "songs/ritik.mp3", "songs/salman.mp3", "songs/shashi kapoor.mp3", "songs/srk.mp3", "songs/sunny deol.mp3"];
 
 //loading
 const textureloader = new THREE.TextureLoader();
