@@ -39,14 +39,14 @@ material3.shininess = 500;
 const sphere3 = new THREE.Mesh(geometry3, material3);
 scene.add(sphere3);
 
-/*const geometry = new THREE.SphereBufferGeometry(7.5, 8, 520);
+const geometry = new THREE.SphereBufferGeometry(12.5, 8, 1120);
 const material = new THREE.PointsMaterial({ color: 0x00ffc2 });
 material.size = 0.1;
 
 const sphere = new THREE.Points( geometry, material );
 scene.add(sphere);
 
-const atmos = new THREE.Mesh(
+/*const atmos = new THREE.Mesh(
     new THREE.SphereGeometry(radius + 0.5, 50, 50),
     new THREE.ShaderMaterial({
         vertexShader: atmosVertexShader,
