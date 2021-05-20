@@ -70,7 +70,7 @@ light2.position.set(15,10,0);
 camera.add(light2);
 scene.add(camera)//since the camera now has children
 
-camera.position.z = 16;
+camera.position.z = 20;
 
 // controls
 
@@ -109,7 +109,7 @@ class mine{
         z = (radius + 0.5
         ) * z;
         var m = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.BoxGeometry(2, 2, 2),
             new THREE.MeshBasicMaterial({ map: textureloader.load(images[n])})
         )
         m.position.set(x, y, z);
