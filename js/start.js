@@ -83,8 +83,8 @@ controls.update();
 const animate = function () {
     requestAnimationFrame( animate );
 
-    /*sphere.rotation.x += 0.01;
-    sphere.rotation.y += 0.01;*/
+    sphere.rotation.x += 0.005;
+    sphere.rotation.y += 0.005;
 
     controls.update();
     renderer.render( scene, camera );
