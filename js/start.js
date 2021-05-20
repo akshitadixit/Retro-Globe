@@ -2,7 +2,7 @@
 import { OrbitControls } from "./OrbitControls.js";
 import { Points } from "./three.module.js";
 
-const radius = 6;
+const radius = 10;
 const text = "Akshita Dixit";
 var images = ["../images/akshay.jpg", "../images/amir.jpg", "../images/amitabh.jpg", "../images/devanand.jpg", "../images/dharmendra.jpg", "../images/dilip kumar.jpg", "../images/govinda.jpg", "../images/jitendra.jpg", "../images/kishore kumar.jpg", "../images/manoj kumar.jpg", "../images/mithun.jpg", "../images/raj kapoor.jpg", "../images/rajendra-kumar.jpg", "../images/rajesh khanna.jpg", "../images/rishi kapoor.jpg", "../images/ritik roshan.jpg", "../images/salman.jpg", "../images/Shashi_Kapoor.png", "../images/srk.jpg", "../images/sunny deol.jpg"
 ]
@@ -15,7 +15,7 @@ const textureloader = new THREE.TextureLoader();
 
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 30000 );
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 30000);
 
 const group = new THREE.Group();
 
@@ -31,44 +31,51 @@ const renderer = new CSS3DRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.getElementById('cards').appendChild( renderer.domElement );
 */
-const geometry2 = new THREE.SphereBufferGeometry(radius, 64, 64);
-const material2 = new THREE.MeshLambertMaterial({ color: 0x00ff });
-material2.shininess = 500;
 
-const geometry3 = new THREE.SphereBufferGeometry(radius+0.5, 64, 64);
+const geometry3 = new THREE.SphereBufferGeometry(radius, 64, 64);
 const material3 = new THREE.MeshPhongMaterial({ color: 0x00ff });
-material2.shininess = 500;
+material3.shininess = 500;
 
-const sphere2 = new THREE.Mesh(geometry2, material2);
-//group.add(sphere2);
-scene.add(sphere2);
 const sphere3 = new THREE.Mesh(geometry3, material3);
 scene.add(sphere3);
 
-const geometry = new THREE.SphereBufferGeometry(7.5, 8, 520);
+/*const geometry = new THREE.SphereBufferGeometry(7.5, 8, 520);
 const material = new THREE.PointsMaterial({ color: 0x00ffc2 });
 material.size = 0.1;
 
 const sphere = new THREE.Points( geometry, material );
 scene.add(sphere);
 
+const atmos = new THREE.Mesh(
+    new THREE.SphereGeometry(radius + 0.5, 50, 50),
+    new THREE.ShaderMaterial({
+        vertexShader: atmosVertexShader,
+        fragmentShader: atmosFragmentShader,
+        blending: THREE.AdditiveBlending,
+        side: THREE.BackSide
+    })
+)
+
+scene.add(atmos);*/
+
 // Lights
-scene.add(new THREE.AmbientLight(0xffffff, 0.08));
+scene.add(new THREE.AmbientLight(0xffffff, 0.1));
 
 var light1 = new THREE.PointLight(0xffffff, 1.75);
 light1.position.set(2, 1, -0.5)
-camera.add(light1)
+//camera.add(light1)
 
 var light2 = new THREE.DirectionalLight(0xffffff, 1);
-light2.position.set(10,1,1);
+light2.position.set(15,10,0);
 camera.add(light2);
 scene.add(camera)//since the camera now has children
 
-camera.position.z = 15;
+camera.position.z = 16;
 
 // controls
 
 const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
 //controls.minPolarAngle = Math.PI/2;
 //controls.maxPolarAngle = Math.PI/2;
 controls.update();
@@ -76,10 +83,8 @@ controls.update();
 const animate = function () {
     requestAnimationFrame( animate );
 
-    group.rotation.x += 0.0005;
-    group.rotation.y += 0.0005;
-    sphere.rotation.x += 0.01;
-    sphere.rotation.y += 0.01;
+    /*sphere.rotation.x += 0.01;
+    sphere.rotation.y += 0.01;*/
 
     controls.update();
     renderer.render( scene, camera );
@@ -219,9 +224,7 @@ function winResize() {
 
 function playsoundtouch(event) {
     event.preventDefault();
-    if (sound.isPlaying) {
-        sound.stop();
-    }
+    
     raycaster.setFromCamera(mouse, camera);
 
     // calculate objects intersecting the picking ray
@@ -229,13 +232,17 @@ function playsoundtouch(event) {
     
     for (let i = 0; i < intersects.length; i++) {
         var res = compare_uuid(intersects[i].object.uuid);
-        if (res != -1) {                
+        if (res != -1) {
+            if (sound.isPlaying) {
+                sound.stop();
+            }
             audioLoader.load( sounds[res], function( buffer ) {
                 sound.setBuffer( buffer );
                 sound.setLoop( false );
                 sound.setVolume( 1 );
                 sound.play();
             });
+            break;
         }
     }
 }
